@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>niryo_moveit_config_standalone</name>
+  <version>5.0.0</version>
+  <description>
+    An automatically generated package with all the configuration and launch files for using Ned with the MoveIt! Motion Planning Framework
+  </description>
+
+  <maintainer email="r.lux@niryo.com">Rémi Lux</maintainer>
+  <license>GPLv3</license>
+
+  <url type="website">http://moveit.ros.org/</url>
+  <url type="bugtracker">https://github.com/ros-planning/moveit/issues</url>
+  <url type="repository">https://github.com/ros-planning/moveit</url>
+
+  <author email="e.renard@niryo.com">Edouard Renard</author>
+
+  <!-- Specifichiamo il build system usato -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Dipendenze di build -->
+  <build_depend>niryo_robot_description</build_depend>
+  <build_depend>moveit_ros_move_group</build_depend>
+  <build_depend>moveit_kinematics</build_depend>
+  <build_depend>moveit_planners_ompl</build_depend>
+  <build_depend>moveit_ros_visualization</build_depend>
+  <build_depend>moveit_ros_benchmarks</build_depend>
+  <build_depend>moveit_ros_warehouse</build_depend>
+  <build_depend>warehouse_ros_mongo</build_depend>
+  <build_depend>joint_state_publisher</build_depend>
+  <build_depend>robot_state_publisher</build_depend>
+  <build_depend>xacro</build_depend>
+  <build_depend>joy</build_depend>
+  <build_depend>rviz2</build_depend>
+
+  <!-- Dipendenze di runtime -->
+  <exec_depend>niryo_robot_description</exec_depend>
+  <exec_depend>moveit_ros_move_group</exec_depend>
+  <exec_depend>moveit_kinematics</exec_depend>
+  <exec_depend>moveit_planners_ompl</exec_depend>
+  <exec_depend>moveit_ros_visualization</exec_depend>
+  <exec_depend>moveit_ros_benchmarks</exec_depend>
+  <exec_depend>moveit_ros_warehouse</exec_depend>
+  <exec_depend>warehouse_ros_mongo</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>joy</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+
+  <!-- Dipendenze per il test -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <!-- Esportazione del tipo di build -->
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>
+

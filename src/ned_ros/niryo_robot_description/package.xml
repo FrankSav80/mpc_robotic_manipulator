@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>niryo_robot_description</name>
+  <version>5.0.0</version>
+  <description>Provides URDF files</description>
+  <maintainer email="r.lux@niryo.com">Rémi Lux</maintainer>
+  <maintainer email="v.pitre@niryo.com">Valentin Pitre</maintainer>
+
+  <license>GPLv3</license>
+  <author email="r.lux@niryo.com">Rémi Lux</author>
+
+  <!-- ROS2 build tool dependency -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <export>
+      <build_type>ament_cmake</build_type>
+  </export>
+</package>

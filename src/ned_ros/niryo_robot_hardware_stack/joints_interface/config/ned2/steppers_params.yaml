@@ -1,0 +1,59 @@
+#
+#  Stepper caracteristics for Ned's hardware
+#
+
+steppers:
+    stepper_1:
+        # gear_ratio, max_effort and micro_steps not used for ttl steppers
+        motor_ratio: 0.0872
+        # assembly offset position (rad)
+        offset_position: -2.90
+        # home position (rad)
+        default_home_position: 0.0
+        limit_position_min: -2.90  # joint limit min
+        limit_position_max: 2.90   # joint limit max
+        # assembly direction (1 or -1)
+        direction: 1
+        v_start: 0.0
+        a_1: 2.199
+        v_1: 0.628
+        a_max: 4.363
+        v_max: 1.571
+        d_max: 4.363
+        d_1: 2.143
+        v_stop: 0.0209
+        torque_percentage: 100 # For Ned2's steppers, it only takes either 0 or 1. 100 by default means 1.
+
+    stepper_2:
+        motor_ratio: 0.0868
+        offset_position: 0.61
+        default_home_position: 0.5
+        limit_position_max: 0.61
+        limit_position_min: -2.09
+        direction: -1
+        v_start: 0.0
+        a_1: 1.0996
+        v_1: 0.251
+        a_max: 2.18
+        v_max: 1.047
+        d_max: 2.18
+        d_1: 1.07
+        v_stop: 0.0209
+        torque_percentage: 100 # For Ned2's steppers, it only takes either 0 or 1. 100 by default means 1.
+        
+    stepper_3:
+        motor_ratio: 0.0868
+        offset_position: -1.34
+        default_home_position: -1.25
+        limit_position_min: -1.34
+        limit_position_max: 1.54
+        direction: 1
+        v_start: 0.0
+        a_1: 2.199
+        v_1: 0.628
+        a_max: 4.363
+        v_max: 1.571
+        d_max: 4.363
+        d_1: 2.143
+        v_stop: 0.0209
+        torque_percentage: 100 # For Ned2's steppers, it only takes either 0 or 1. 100 by default means 1.

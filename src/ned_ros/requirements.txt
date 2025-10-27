@@ -1,0 +1,15 @@
+Adafruit-GPIO~=1.0.3
+Adafruit-PureIO~=1.1.9
+Adafruit-BBIO~=1.2.0
+Adafruit-ADS1x15~=1.0.2
+gTTS~=2.5.1
+smbus~=1.1.post2
+smbus2~=0.4.2
+psutil~=5.9.0
+RPI.GPIO~=0.6.5
+rpi_ws281x~=4.3.4
+spidev~=3.6
+requests~=2.31.0
+pymodbus~=3.6.2
+sentry-sdk~=2.11.0
+urllib3~=1.26.11

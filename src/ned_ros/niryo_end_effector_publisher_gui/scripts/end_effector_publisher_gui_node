@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import signal
+import sys
+from niryo_robot_utils import sentry_init
+
+import rospy
+
+from python_qt_binding.QtWidgets import QApplication
+
+import niryo_end_effector_publisher_gui
+
+if __name__ == '__main__':
+    sentry_init()
+
+    try:
+        rospy.init_node('niryo_end_effector_publisher_gui')
+        app = QApplication(sys.argv)
+        app.setApplicationDisplayName("End Effector Publisher")
+        jsp_gui = niryo_end_effector_publisher_gui.EndEffectorPublisherGui()
+        jsp_gui.show()
+
+        signal.signal(signal.SIGINT, signal.SIG_DFL)
+        sys.exit(app.exec_())
+
+    except rospy.ROSInterruptException:
+        pass

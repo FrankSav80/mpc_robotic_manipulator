@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<!-- This launch file allows to run simulation on Rviz
+-->
+<launch xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://gist.githubusercontent.com/nalt/dfa2abc9d2e3ae4feb82ca5608090387/raw/roslaunch.xsd">
+    <env name="ROSCONSOLE_CONFIG_FILE"
+        value="$(find niryo_robot_bringup)/config/desktop_rviz_simulation_trace.conf" />
+    <!-- Arguments definition -->
+    <arg name="log_level" default="INFO" />
+    <arg name="hardware_version" default="ned"/>
+    <arg name="debug" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="conf_location" default="version.txt"/>
+    <arg name="simu_gripper" default="false" />
+    <arg name="simu_conveyor" default="false"/>
+    <arg name="database" default="false" />
+
+    <!-- Define most of ROS parameters -->
+    <include file="$(find niryo_robot_bringup)/launch/niryo_$(arg hardware_version)_simulation.launch">
+        <arg name="simu_gripper" value="false" />
+        <arg name="simu_conveyor" value="$(arg simu_conveyor)" />
+        <arg name="log_level" value="$(arg log_level)" />
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="vision_enabled" value="false" />
+        <arg name="gazebo" value="false" />
+        <arg name="database" default="$(arg database)"/>
+    </include>
+
+    <group if="$(arg gui)">
+        <!-- Launching Rviz -->
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find niryo_robot_description)/config/default_config.rviz" />
+    </group>
+
+</launch>
