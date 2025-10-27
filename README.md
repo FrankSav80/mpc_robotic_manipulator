@@ -84,6 +84,10 @@ The **closed-loop MPC controller** performs the following at each cycle:
 - Simulation results validate theoretical predictions
 
 <p align="center">
+  <img src="images/display_traj1.PNG" alt="Trajectory Display 1" width="500">
+</p>
+
+<p align="center">
   <img src="images/result.gif" alt="MPC simulation result" width="500">
 </p>
 
