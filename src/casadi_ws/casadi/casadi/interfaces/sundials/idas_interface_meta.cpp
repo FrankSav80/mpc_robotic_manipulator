@@ -1,0 +1,153 @@
+/*
+ *    This file is part of CasADi.
+ *
+ *    CasADi -- A symbolic framework for dynamic optimization.
+ *    Copyright (C) 2010-2023 Joel Andersson, Joris Gillis, Moritz Diehl,
+ *                            KU Leuven. All rights reserved.
+ *    Copyright (C) 2011-2014 Greg Horn
+ *
+ *    CasADi is free software; you can redistribute it and/or
+ *    modify it under the terms of the GNU Lesser General Public
+ *    License as published by the Free Software Foundation; either
+ *    version 3 of the License, or (at your option) any later version.
+ *
+ *    CasADi is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *    Lesser General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Lesser General Public
+ *    License along with CasADi; if not, write to the Free Software
+ *    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ */
+
+
+      #include "idas_interface.hpp"
+      #include <string>
+
+      const std::string casadi::IdasInterface::meta_doc=
+      "\n"
+"\n"
+"\n"
+"Interface to IDAS from the Sundials suite.\n"
+"\n"
+"Extra doc: https://github.com/casadi/casadi/wiki/L_225 \n"
+"\n"
+"\n"
+">List of available options\n"
+"\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"|            Id             |      Type       |        Description         |\n"
+"+===========================+=================+============================+\n"
+"| abstol                    | OT_DOUBLE       | Absolute tolerence for the |\n"
+"|                           |                 | IVP solution               |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| abstolv                   | OT_DOUBLEVECTOR | Absolute tolerarance for   |\n"
+"|                           |                 | each component             |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| calc_ic                   | OT_BOOL         | Use IDACalcIC to get       |\n"
+"|                           |                 | consistent initial         |\n"
+"|                           |                 | conditions.                |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| calc_icB                  | OT_BOOL         | Use IDACalcIC to get       |\n"
+"|                           |                 | consistent initial         |\n"
+"|                           |                 | conditions for backwards   |\n"
+"|                           |                 | system [default: equal to  |\n"
+"|                           |                 | calc_ic].                  |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| cj_scaling                | OT_BOOL         | IDAS scaling on cj for the |\n"
+"|                           |                 | user-defined linear solver |\n"
+"|                           |                 | module                     |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| constraints               | OT_INTVECTOR    | Constrain the solution     |\n"
+"|                           |                 | y=[x,z]. 0 (default): no   |\n"
+"|                           |                 | constraint on yi, 1: yi >= |\n"
+"|                           |                 | 0.0, -1: yi <= 0.0, 2: yi  |\n"
+"|                           |                 | > 0.0, -2: yi < 0.0.       |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| disable_internal_warnings | OT_BOOL         | Disable SUNDIALS internal  |\n"
+"|                           |                 | warning messages           |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| first_time                | OT_DOUBLE       | First requested time as a  |\n"
+"|                           |                 | fraction of the time       |\n"
+"|                           |                 | interval                   |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| fsens_err_con             | OT_BOOL         | include the forward        |\n"
+"|                           |                 | sensitivities in all error |\n"
+"|                           |                 | controls                   |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| init_xdot                 | OT_DOUBLEVECTOR | Initial values for the     |\n"
+"|                           |                 | state derivatives          |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| interpolation_type        | OT_STRING       | Type of interpolation for  |\n"
+"|                           |                 | the adjoint sensitivities  |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| linear_solver             | OT_STRING       | A custom linear solver     |\n"
+"|                           |                 | creator function [default: |\n"
+"|                           |                 | qr]                        |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| linear_solver_options     | OT_DICT         | Options to be passed to    |\n"
+"|                           |                 | the linear solver          |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| max_krylov                | OT_INT          | Maximum Krylov subspace    |\n"
+"|                           |                 | size                       |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| max_multistep_order       | OT_INT          | Maximum order for the      |\n"
+"|                           |                 | (variable-order) multistep |\n"
+"|                           |                 | method                     |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| max_num_steps             | OT_INT          | Maximum number of          |\n"
+"|                           |                 | integrator steps           |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| max_order                 | OT_DOUBLE       | Maximum order              |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| max_step_size             | OT_DOUBLE       | Maximim step size          |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| newton_scheme             | OT_STRING       | Linear solver scheme in    |\n"
+"|                           |                 | the Newton method:         |\n"
+"|                           |                 | DIRECT|gmres|bcgstab|tfqmr |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| nonlin_conv_coeff         | OT_DOUBLE       | Coefficient in the         |\n"
+"|                           |                 | nonlinear convergence test |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| quad_err_con              | OT_BOOL         | Should the quadratures     |\n"
+"|                           |                 | affect the step size       |\n"
+"|                           |                 | control                    |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| reltol                    | OT_DOUBLE       | Relative tolerence for the |\n"
+"|                           |                 | IVP solution               |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| scale_abstol              | OT_BOOL         | Scale absolute tolerance   |\n"
+"|                           |                 | by nominal value           |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| second_order_correction   | OT_BOOL         | Second order correction in |\n"
+"|                           |                 | the augmented system       |\n"
+"|                           |                 | Jacobian [true]            |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| sensitivity_method        | OT_STRING       | Sensitivity method:        |\n"
+"|                           |                 | SIMULTANEOUS|staggered     |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| step0                     | OT_DOUBLE       | initial step size          |\n"
+"|                           |                 | [default: 0/estimated]     |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| steps_per_checkpoint      | OT_INT          | Number of steps between    |\n"
+"|                           |                 | two consecutive            |\n"
+"|                           |                 | checkpoints                |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| stop_at_end               | OT_BOOL         | [DEPRECATED] Stop the      |\n"
+"|                           |                 | integrator at the end of   |\n"
+"|                           |                 | the interval               |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| suppress_algebraic        | OT_BOOL         | Suppress algebraic         |\n"
+"|                           |                 | variables in the error     |\n"
+"|                           |                 | testing                    |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"| use_preconditioner        | OT_BOOL         | Precondition the iterative |\n"
+"|                           |                 | solver [default: true]     |\n"
+"+---------------------------+-----------------+----------------------------+\n"
+"\n"
+"\n"
+"\n"
+"\n"
+;
