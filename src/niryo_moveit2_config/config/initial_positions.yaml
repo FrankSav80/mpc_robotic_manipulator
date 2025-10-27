@@ -1,0 +1,9 @@
+# Default initial positions for niryo_ned2's ros2_control fake system
+
+initial_positions:
+  joint_1: -1.257
+  joint_2: -0.38397
+  joint_3: -0.36652
+  joint_4: -0.7854
+  joint_5: 1.9024
+  joint_6: -2.3213
