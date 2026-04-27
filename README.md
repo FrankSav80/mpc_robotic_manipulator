@@ -98,10 +98,11 @@ The **closed-loop MPC controller** performs the following at each cycle:
 
 📦 mpc_robotic_manipulator 
 - src/
-  - casadi_ws/casadi → CasADi symbolic and optimization files
-  - matlab_script → MATLAB scripts
   - ned_ros → ROS2 configuration files for the Niryo Ned2 robot
   - niryo_moveit2_config → Main scripts developed for MPC implementation
+- scripts/
+  - matlab_script → MATLAB scripts
+  - setup_casadi_ipopt.sh
 - image/ → Figures, simulation results
 - docs/ → Thesis report
 - README.md → Project overview
