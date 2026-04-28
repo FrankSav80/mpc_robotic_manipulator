@@ -76,6 +76,38 @@ The **closed-loop MPC controller** performs the following at each cycle:
 
 ---
 
+
+## ⚙️ How to Run the Simulation
+
+The project relies on two main ROS2 launch files:
+
+### Reference trajectory generation
+
+```bash
+ros2 launch niryo_moveit2_config niryo.launch.py
+```
+
+This launch file generates the reference trajectory used by the MPC controller during simulation. It opens MoveIt2 and RViz, loads the Niryo Ned2 model, initializes the robot control stack in simulation, and starts the `lin_traj_chomp` node.
+
+The `lin_traj_chomp` node uses MoveIt2 with the CHOMP planning pipeline to generate a reference trajectory by defining a target end-effector pose, computing inverse kinematics, planning the motion, and sampling the trajectory every 100 ms (modifiable if needed). The resulting end-effector trajectory is saved as a `.txt` file (e.g., `traj_100ms.txt`) inside the `cpp_script` folder.
+
+> **Note:** In practice, this step is optional, since a precomputed reference trajectory is already provided. It is mainly useful if you want to regenerate or modify the trajectory.
+
+
+### Full simulation with MPC
+
+```bash
+ros2 launch niryo_moveit2_config dynamic_setup.launch.py
+```
+
+This launch file runs the complete simulation. It opens MoveIt2 and RViz, loads the Niryo Ned2 model, initializes the robot control stack in simulation, and starts `dynamic_scene_setup` followed by `mpc_controller`.
+
+The `dynamic_scene_setup` node creates the simulation environment by adding a floor and a moving box obstacle, which travels along a straight-line trajectory between two points. It also publishes the obstacle pose on a dedicated topic.
+
+This information is used by `mpc_controller`, which implements the MPC algorithm. An observer estimates the obstacle velocity and acceleration, allowing the controller to predict its future position and react accordingly.
+
+---
+
 ## 🧪 Results
 
 - Accurate **trajectory tracking** in obstacle-free scenarios  
