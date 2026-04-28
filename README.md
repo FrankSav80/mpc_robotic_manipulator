@@ -79,7 +79,7 @@ The **closed-loop MPC controller** performs the following at each cycle:
 
 ## ⚙️ How to Run the Simulation
 
-The project relies on two main ROS2 launch files:
+The project relies on two main ROS2 launch files
 
 - ### Reference trajectory generation
 
