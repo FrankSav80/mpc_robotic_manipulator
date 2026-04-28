@@ -102,7 +102,7 @@ The **closed-loop MPC controller** performs the following at each cycle:
   - niryo_moveit2_config → Main scripts developed for MPC implementation
 - scripts/
   - matlab_script → MATLAB scripts
-  - setup_casadi_ipopt.sh
+  - setup_casadi_ipopt.sh -> Shell script to install CasADi and IPOPT dependencies
 - image/ → Figures, simulation results
 - docs/ → Thesis report
 - README.md → Project overview
