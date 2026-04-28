@@ -81,7 +81,7 @@ The **closed-loop MPC controller** performs the following at each cycle:
 
 The project relies on two main ROS2 launch files:
 
-### Reference trajectory generation
+- ### Reference trajectory generation
 
 ```bash
 ros2 launch niryo_moveit2_config niryo.launch.py
@@ -94,7 +94,7 @@ The `lin_traj_chomp` node uses MoveIt2 with the CHOMP planning pipeline to gener
 > **Note:** In practice, this step is optional, since a precomputed reference trajectory is already provided. It is mainly useful if you want to regenerate or modify the trajectory.
 
 
-### Full simulation with MPC
+- ### Full simulation with MPC
 
 ```bash
 ros2 launch niryo_moveit2_config dynamic_setup.launch.py
